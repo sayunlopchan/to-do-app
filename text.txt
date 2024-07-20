@@ -1,0 +1,82 @@
+todo app using formik 
+
+1. npm i formik
+
+
+create a form tag  :
+<form>
+
+ <input type="text" name="post">
+  // added a input tag with name arttibute "post" for posting blog
+
+</form>
+
+
+create a formik var with useFormik function assigned :
+and inside the function add object 
+
+#1 const formik = useFormik(); 
+#2 const formik = useFormik({}); 
+
+------inside the obj "{}" add assign "initialvalues obj" 
+
+#3 const formik = useFormik({
+initialvalues: {
+  
+}
+}); 
+
+-----now add value that will be shown , which is name="post" as keyName ,
+leave a empty post eg: 
+
+#3 const formik = useFormik({
+initialvalues: {
+post: ""    // empty string because at first we get empty data 
+}
+}); 
+
+
+#4 set handleChange function on submit 
+// handleChange function is guven from formik
+
+
+<formik onSubmit={ formik.handleChange}>
+--------also inside input tag---------
+<input onSubmit={ formik.handleChange}>
+
+#5 lets create onSubmit event so when we submit the string value will be added inside a post obj like this : {post: "post added"}
+
+
+const formik = useFormik({
+initialvalues: {
+  post:"'
+},
+onSubmit: (e)=>{
+  console.log(e) // print value of e in console
+}
+}); 
+
+for eg: 
+we typed "hello console" inside the input and submit
+
+
+/////object{post: "hello console"}//////
+
+
+#####now lets show it in using######
+1. we use useState to manage state
+
+const [posts , setPosts] = useState([]);
+
+const formik = useFormik({
+initialvalues: {
+  post:"'
+},
+onSubmit: (e)=>{
+  console.log(e) // print value of e in console
+
+  setPosts = ((prev)=> [...prev, e.post])
+}
+}); 
+
+<p>{post}</p> 
